@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://charliechiner:kinkinkin22@cluster0.imicl.gcp.mongodb.net/mernSocialMedia?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://charliechiner:kinkinkin22@cluster0.imicl.gcp.mongodb.net/mernSocialMedia?retryWrites=true&w=majority",
+  "jwtToken": "mysecrettoken"
 }

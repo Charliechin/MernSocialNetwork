@@ -23,7 +23,6 @@ export const Register = ({ setAlert }) => {
   const onSubmit = async e => {
     e.preventDefault();
     if (password !== password2) {
-      // ojete
       setAlert('Password Missmatch', 'danger');
     }
     console.log('Success');

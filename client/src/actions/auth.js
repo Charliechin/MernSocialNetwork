@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL } from './types'
+import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from './types'
 import setAuthToken from '../utils/setAuthToken';
 // load User
 export const loadUser = () => async dispatch => {
@@ -16,6 +16,7 @@ export const loadUser = () => async dispatch => {
       payload: res.data
     });
   } catch (error) {
+    console.log(error);
     dispatch({
       type: AUTH_ERROR,
     });
@@ -38,6 +39,7 @@ export const register = ({ name, email, password }) => async dispatch => {
       payload: res.data
     });
 
+    dispatch(loadUser());
 
   } catch (error) {
     const errors = error.response.data.errors;
@@ -53,7 +55,6 @@ export const register = ({ name, email, password }) => async dispatch => {
 
 
 // Login User
-// Register User
 export const login = (email, password) => async dispatch => {
   const config = {
     headers: { 'Content-Type': 'application/json' }
@@ -69,6 +70,8 @@ export const login = (email, password) => async dispatch => {
       payload: res.data
     });
 
+    dispatch(loadUser());
+
 
   } catch (error) {
     const errors = error.response.data.errors;
@@ -80,4 +83,9 @@ export const login = (email, password) => async dispatch => {
     })
     console.error(error.message);
   };
+}
+
+// Logout / Clear Profile
+export const logout = () => dispatch => {
+  dispatch({ type: LOGOUT })
 }

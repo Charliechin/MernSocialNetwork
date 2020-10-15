@@ -1,26 +1,25 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../../middleware/auth');
 const User = require('../../models/User');
 const config = require('config');
+const auth = require('../../middleware/auth');
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 
-// @route   GET api/auth
-// @desc    TEST ROUTE
-// @access  Public
+// @route    GET api/auth
+// @desc     Get user by token
+// @access   Private
+router.get('/', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    res.json(user);
 
-// router.get('/', auth, async (req, res) => {
-//   try {
-//     const user = await User.findById(req.user.id).select('-password');
-//     res.json(user);
-
-//   } catch (error) {
-//     console.log(error.message);
-//     res.status(500).send("Server Error");
-//   }
-// });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 // @route   POST api/auth
 // @desc    Authenticate user & get Token
@@ -66,7 +65,7 @@ router.post('/', [
 
       jwt.sign(payload, config.get('jwtToken'),
         {
-          expiresIn: 360000
+          expiresIn: 320000
         }, (err, token) => {
           if (err) throw err;
           res.json({ token });

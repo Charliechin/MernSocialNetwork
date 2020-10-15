@@ -11,16 +11,16 @@ const bcrypt = require('bcryptjs');
 // @desc    TEST ROUTE
 // @access  Public
 
-router.get('/', auth, async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id).select('-password');
-    res.json(user);
+// router.get('/', auth, async (req, res) => {
+//   try {
+//     const user = await User.findById(req.user.id).select('-password');
+//     res.json(user);
 
-  } catch (error) {
-    console.log(error.message);
-    res.status(500).send("Server Error");
-  }
-});
+//   } catch (error) {
+//     console.log(error.message);
+//     res.status(500).send("Server Error");
+//   }
+// });
 
 // @route   POST api/auth
 // @desc    Authenticate user & get Token

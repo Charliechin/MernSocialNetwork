@@ -32,7 +32,7 @@ const Login = ({ login, isAuthenticated }) => {
 
       <h1 className="large text-primary">Sign </h1>
       <p className="lead"><i className="fas fa-user"></i> Sign In</p>
-      <form className="form" action="create-profile.html" onSubmit={e => onSubmit(e)}>
+      <form className="form" action="/create-profile" onSubmit={e => onSubmit(e)}>
         <div className="form-group">
           <input type="email" placeholder="Email Address" value={email} onChange={e => onChange(e)} name="email" />
         </div>

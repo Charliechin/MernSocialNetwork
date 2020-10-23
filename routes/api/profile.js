@@ -182,8 +182,8 @@ router.delete('/', auth, async (req, res) => {
 });
 
 /*
-  @route  DELETE api/profile/experiencie/:exp_id
-  @desc   Delete Experiencie
+  @route  DELETE api/profile/experience/:exp_id
+  @desc   Delete Experience
   @access Private
  */
 

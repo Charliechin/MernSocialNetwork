@@ -64,7 +64,7 @@ export const addExperience = (formData, history) => async dispatch => {
         'Content-Type': 'application/json'
       }
     }
-    const res = await axios.post('/api/profile/experience', formData, config);
+    const res = await axios.put('api/profile/experience', formData, config);
     dispatch({
       type: UPDATE_PROFILE,
       payload: res.data

@@ -68,7 +68,7 @@ const Profile = ({
 
             </div>
 
-            {<ProfileGithub username={profile.social.githubusername} />}
+            {<ProfileGithub username={profile.githubusername} />}
           </div>
         </Fragment>
       )}

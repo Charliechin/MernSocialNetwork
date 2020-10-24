@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE, CLEAR_PROFILE, ACCOUNT_DELETED } from './types';
+import { GET_PROFILES, GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE, CLEAR_PROFILE, ACCOUNT_DELETED, GET_REPOS } from './types';
 
 // load User
 export const getCurrentProfile = () => async dispatch => {
   /// we need to see there is a token, and if so, put a global header (x-auth-token) from localstorage
+
   // always send that
 
 
@@ -22,6 +23,64 @@ export const getCurrentProfile = () => async dispatch => {
     });
   }
 }
+
+// Get all profiles
+export const getProfiles = () => async dispatch => {
+
+  try {
+    const res = await axios.get('/api/profile');
+    console.log('dispatching GET_PROFILE w payload: ', res.data);
+    dispatch({ type: CLEAR_PROFILE });
+    dispatch({
+      type: GET_PROFILES,
+      payload: res.data
+    });
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: error.response.statusText, status: error.response.status }
+    });
+  }
+}
+
+
+// Get profiles by ID
+export const getProfileById = userId => async dispatch => {
+
+  try {
+    const res = await axios.get(`/api/profile/user/${userId}`);
+    console.log('dispatching GET_PROFILE w payload: ', res.data);
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data
+    });
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: error.response.statusText, status: error.response.status }
+    });
+  }
+}
+
+
+// Get github repos
+export const getGithubRepos = userName => async dispatch => {
+
+  try {
+    const res = await axios.get(`/api/profile/github/${userName}`);
+    console.log('dispatching GET_PROFILE w payload: ', res.data);
+    dispatch({
+      type: GET_REPOS,
+      payload: res.data
+    });
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: error.response.statusText, status: error.response.status }
+    });
+  }
+}
+
 // Create or update
 export const createProfile = (formData, history, edit = false) => async dispatch => {
   try {

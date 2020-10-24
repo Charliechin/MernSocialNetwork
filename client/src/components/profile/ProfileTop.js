@@ -29,26 +29,26 @@ const ProfileTop = ({ profile: {
         }
         {
           social && social.twitter && (
-            <Link to={social.twitter} rel="noopener noreferrer"><i className="fas fa-twitter fa-2x"></i>  </Link>
+            <Link to={social.twitter} rel="noopener noreferrer"><i className="fab fa-twitter fa-2x"></i>  </Link>
 
           )
         }
 
         {
           social && social.facebook && (
-            <Link to={social.facebook} rel="noopener noreferrer"><i className="fas fa-facebooks fa-2x"></i>  </Link>
+            <Link to={social.facebook} rel="noopener noreferrer"><i className="fab fa-facebooks fa-2x"></i>  </Link>
 
           )
         }
         {
           social && social.linkedin && (
-            <Link to={social.linkedin} rel="noopener noreferrer"><i className="fas fa-linkedin fa-2x"></i>  </Link>
+            <Link to={social.linkedin} rel="noopener noreferrer"><i className="fab fa-linkedin fa-2x"></i>  </Link>
 
           )
         }
         {
           social && social.instagram && (
-            <Link to={social.instagram} rel="noopener noreferrer"><i className="fas fa-instagram fa-2x"></i>  </Link>
+            <Link to={social.instagram} rel="noopener noreferrer"><i className="fab fa-instagram fa-2x"></i>  </Link>
 
           )
         }

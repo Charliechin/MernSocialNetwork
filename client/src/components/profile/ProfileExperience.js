@@ -24,7 +24,7 @@ const ProfileExperience = ({
 }
 
 ProfileExperience.propTypes = {
-  experiences: PropTypes.array.isRequired,
+  experience: PropTypes.object.isRequired,
 }
 
 

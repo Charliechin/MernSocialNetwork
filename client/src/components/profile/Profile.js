@@ -7,6 +7,7 @@ import ProfileTop from './ProfileTop'
 import ProfileAbout from './ProfileAbout'
 import ProfileExperience from './ProfileExperience'
 import ProfileEducation from './ProfileEducation'
+import ProfileGithub from './ProfileGithub'
 import { getProfileById, getProfiles } from '../../actions/profile'
 
 const Profile = ({
@@ -43,7 +44,7 @@ const Profile = ({
               {profile.experience.length > 0 ? (
                 <Fragment>
                   {profile.experience.map(experience => (
-                    <ProfileExperience keyp={experience._id} experience={experience} />
+                    <ProfileExperience key={experience._id} experience={experience} />
                   ))}
                 </Fragment>
               ) : (<h4>No experience credentials...</h4>)}
@@ -57,26 +58,23 @@ const Profile = ({
 
               <h2 className="text-primary">Education</h2>
 
-              {profile.experience.length > 0 ? (
+              {profile.education.length > 0 ? (
                 <Fragment>
                   {profile.education.map(education => (
-                    <ProfileEducation keyp={education._id} education={education} />
+                    <ProfileEducation key={education._id} education={education} />
                   ))}
                 </Fragment>
               ) : (<h4>No experience credentials...</h4>)}
 
-
-
-
             </div>
 
+            {<ProfileGithub username={profile.social.githubusername} />}
           </div>
         </Fragment>
-      )
-      }
+      )}
     </Fragment >
-  )
-}
+  );
+};
 
 Profile.propTypes = {
   getProfileById: PropTypes.func.isRequired,

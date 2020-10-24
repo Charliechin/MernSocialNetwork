@@ -40,7 +40,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
       instagram: loading || !profile.instagram ? '' : profile.instagram,
     });
 
-  }, [loading])
+  }, [loading, getCurrentProfile, profile])
 
   const {
     company,
@@ -127,7 +127,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
         </div>
 
         <div className="my-2">
-          <button onclick={() => toggleSocialInputs(!displaySocialInputs)} type="button" className="btn btn-light">
+          <button onClick={() => toggleSocialInputs(!displaySocialInputs)} type="button" className="btn btn-light">
             Add Social Network Links
           </button>
           <span>Optional</span>

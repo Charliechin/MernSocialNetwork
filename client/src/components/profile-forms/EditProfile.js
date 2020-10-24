@@ -40,7 +40,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
       instagram: loading || !profile.instagram ? '' : profile.instagram,
     });
 
-  }, [loading, getCurrentProfile, profile])
+  }, [loading, getCurrentProfile])
 
   const {
     company,
@@ -73,7 +73,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
         Create Your Profile
       </h1>
       <p className="lead">
-        <i className="fas fa-user"></i> Let's get some information to make your
+        <i className="fab fa-user"></i> Let's get some information to make your
         profile stand out
       </p>
       <small>* = required field</small>

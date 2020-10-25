@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, Fragment } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPosts } from '../../actions/post';
-// import Spinner from '../layouts/Spinner';
+import Spinner from '../layouts/Spinner';
 import PostItem from '../posts/PostItem';
+import PostForm from '../posts/PostForm';
 
 const Posts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
@@ -13,11 +14,17 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
   const renderPosts = posts.map(post => (
     <PostItem key={post._id} post={post} />
   ))
-  return (
-    <div>
-      {renderPosts}
+  return loading ? (<Spinner />) : (
 
-    </div>
+    <Fragment>
+      <h1 className="large text-primary">Posts</h1>
+      <p className="lead"> <i className="fas fa-user" />Welcome to the community </p>
+      <PostForm />
+      <div className="posts">
+        {renderPosts}
+      </div>
+
+    </Fragment>
   )
 }
 

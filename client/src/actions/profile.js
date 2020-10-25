@@ -201,7 +201,6 @@ export const addEducation = (formData, history) => async dispatch => {
 
 export const deleteEducation = id => async dispatch => {
   try {
-    debugger
     const res = await axios.delete(`api/profile/education/${id}`);
     dispatch({
       type: UPDATE_PROFILE,
@@ -211,7 +210,6 @@ export const deleteEducation = id => async dispatch => {
     dispatch(setAlert('Education Deleted', 'success'));
 
   } catch (error) {
-    debugger
     dispatch({
       type: PROFILE_ERROR,
       payload: { msg: error.response.statusText, status: error.response.status }

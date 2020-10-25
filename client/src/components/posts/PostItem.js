@@ -1,8 +1,10 @@
-import React, { Fragment, useEffect } from 'react'
+// import React, { Fragment, useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 import Moment from 'react-moment'
 import { connect } from 'react-redux'
+import { addLike, removeLike, removePost } from '../../actions/post'
 
 
 const PostItem = ({
@@ -16,7 +18,10 @@ const PostItem = ({
     comments,
     date
   },
-  auth
+  auth,
+  addLike,
+  removeLike,
+  removePost
 }) => {
   // useEffect(() => {
   //   getPosts();
@@ -42,13 +47,16 @@ const PostItem = ({
         <p className="post-date">
           Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
         </p>
-        <button type="button" className="btn btn-light">
+        <button
+          type="button"
+          className="btn btn-light"
+          onClick={e => addLike(_id)}>
           <i className="fas fa-thumbs-up"></i>{' '}
           <span>{likes.length > 0 && (
             <span>{likes.length}</span>
           )}</span>
         </button>
-        <button type="button" className="btn btn-light">
+        <button type="button" className="btn btn-light" onClick={e => removeLike(_id)}>
           <i className="fas fa-thumbs-down"></i>
         </button>
 
@@ -60,7 +68,7 @@ const PostItem = ({
         </Link>
         {/* Authentication, if this post belongs to the current user, show the button */}
         {!auth.loading && user === auth.user._id && (
-          <button type="button" className="btn btn-danger"><i className="fas fa-times"></i></button>
+          <button type="button" className="btn btn-danger" onClick={e => removePost(_id)}><i className="fas fa-times"></i></button>
         )}
       </div>
     </div>
@@ -76,4 +84,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, {})(PostItem);
+export default connect(mapStateToProps, { addLike, removeLike, removePost })(PostItem);

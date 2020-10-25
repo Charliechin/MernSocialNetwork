@@ -1,8 +1,8 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPosts } from '../../actions/post';
-import Spinner from '../layouts/Spinner';
+// import Spinner from '../layouts/Spinner';
 import PostItem from '../posts/PostItem';
 
 const Posts = ({ getPosts, post: { posts, loading } }) => {

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Moment from 'react-moment';
+// import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import Spinner from '../layouts/Spinner';
 import { getGithubRepos } from '../../actions/profile';
@@ -12,7 +12,7 @@ const ProfileGithub = ({ username, getGithubRepos, repos }) => {
   useEffect(() => {
     console.log("GetGithubRepos");
     getGithubRepos(username)
-  }, [getGithubRepos]);
+  }, [getGithubRepos, username]);
 
 
   return (

@@ -218,7 +218,6 @@ router.post('/comment/:post_id', [auth, [
     post.comments.unshift(newComment);
     await post.save();
 
-    // const ojete = await newComment.save();
     console.log("post: ", post);
     return res.json(post);
 

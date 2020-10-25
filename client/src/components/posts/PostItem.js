@@ -40,24 +40,28 @@ const PostItem = ({
       <div>
         <p className="my-1">{text}</p>
         <p className="post-date">
-          Posted on {date}
+          Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
         </p>
         <button type="button" className="btn btn-light">
-          <i className="fas fa-thumbs-up"></i>
-          <span>4</span>
+          <i className="fas fa-thumbs-up"></i>{' '}
+          <span>{likes.length > 0 && (
+            <span>{likes.length}</span>
+          )}</span>
         </button>
         <button type="button" className="btn btn-light">
           <i className="fas fa-thumbs-down"></i>
         </button>
-        <Link to="/post" className="btn btn-primary">
-          Discussion <span className='comment-count'>2</span>
+
+
+        <Link to={`post/${_id}`} className="btn btn-primary">
+          Discussion {' '} {comments.length > 0 && (
+            <span className='comment-count'>{comments.length}</span>
+          )}
         </Link>
-        <button
-          type="button"
-          className="btn btn-danger"
-        >
-          <i className="fas fa-times"></i>
-        </button>
+        {/* Authentication, if this post belongs to the current user, show the button */}
+        {!auth.loading && user === auth.user._id && (
+          <button type="button" className="btn btn-danger"><i className="fas fa-times"></i></button>
+        )}
       </div>
     </div>
   )

@@ -1,5 +1,5 @@
 // import React, { Fragment, useEffect } from 'react'
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 import Moment from 'react-moment'
@@ -21,6 +21,7 @@ const PostItem = ({
   auth,
   addLike,
   removeLike,
+  showActions,
   removePost
 }) => {
   // useEffect(() => {
@@ -47,32 +48,44 @@ const PostItem = ({
         <p className="post-date">
           Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
         </p>
-        <button
-          type="button"
-          className="btn btn-light"
-          onClick={e => addLike(_id)}>
-          <i className="fas fa-thumbs-up"></i>{' '}
-          <span>{likes.length > 0 && (
-            <span>{likes.length}</span>
-          )}</span>
-        </button>
-        <button type="button" className="btn btn-light" onClick={e => removeLike(_id)}>
-          <i className="fas fa-thumbs-down"></i>
-        </button>
+
+        {showActions && <Fragment>
+          <button
+            type="button"
+            className="btn btn-light"
+            onClick={e => addLike(_id)}>
+            <i className="fas fa-thumbs-up"></i>{' '}
+            <span>{likes.length > 0 && (
+              <span>{likes.length}</span>
+            )}</span>
+          </button>
 
 
-        <Link to={`post/${_id}`} className="btn btn-primary">
-          Discussion {' '} {comments.length > 0 && (
-            <span className='comment-count'>{comments.length}</span>
+          <button type="button" className="btn btn-light" onClick={e => removeLike(_id)}>
+            <i className="fas fa-thumbs-down"></i>
+          </button>
+
+
+          <Link to={`posts/${_id}`} className="btn btn-primary">
+            Discussion {' '} {comments.length > 0 && (
+              <span className='comment-count'>{comments.length}</span>
+            )}
+          </Link>
+          {/* Authentication, if this post belongs to the current user, show the button */}
+          {!auth.loading && user === auth.user._id && (
+            <button type="button" className="btn btn-danger" onClick={e => removePost(_id)}><i className="fas fa-times"></i></button>
           )}
-        </Link>
-        {/* Authentication, if this post belongs to the current user, show the button */}
-        {!auth.loading && user === auth.user._id && (
-          <button type="button" className="btn btn-danger" onClick={e => removePost(_id)}><i className="fas fa-times"></i></button>
-        )}
+
+        </Fragment>}
+
+
       </div>
     </div>
   )
+}
+
+PostItem.defaultProps = {
+  showActions: true
 }
 
 PostItem.propTypes = {

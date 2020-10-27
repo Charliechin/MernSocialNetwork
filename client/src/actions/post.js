@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { post } from 'request';
 import { setAlert } from './alert';
 import { GET_POSTS, GET_POST, POST_ERROR, UPDATE_LIKES, DELETE_POST, ADD_POST } from './types';
 
@@ -59,7 +58,7 @@ export const removeLike = postId => async dispatch => {
 // Remove post
 export const removePost = postId => async dispatch => {
   try {
-    const res = await axios.delete(`api/posts/${postId}`);
+    await axios.delete(`api/posts/${postId}`);
     dispatch({ type: DELETE_POST, payload: postId });
     dispatch(setAlert('Post Removed', 'success'));
 
@@ -81,6 +80,7 @@ export const addPost = formData => async dispatch => {
   }
   try {
     const res = await axios.post(`api/posts`, formData, config);
+
     dispatch({ type: ADD_POST, payload: res.data });
     dispatch(setAlert('Post Created', 'success'));
 
@@ -96,8 +96,7 @@ export const addPost = formData => async dispatch => {
 // Get post
 export const getPost = postId => async dispatch => {
   try {
-    const res = await axios.get(`api/posts/${postId}`);
-    console.log("In post action, res is: ", res);
+    const res = await axios.get(`/api/posts/${postId}`);
     dispatch({
       type: GET_POST,
       payload: res.data

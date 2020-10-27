@@ -62,18 +62,22 @@ router.get('/', auth, async (req, res) => {
 })
 
 /*
-@route GET api/posts/:post_id
+@route GET api/posts/:postId
 @desc  Get post by ID
 @access Private
 */
 
-router.get('/:post_id', auth, async (req, res) => {
+router.get('/:postId', auth, async (req, res) => {
   try {
-    const post = await Post.findById(req.params.post_id);
+    const post = await Post.findById(req.params.postId);
+    console.log("POST ROUTE, post is: ", post)
 
     if (!post) {
       return res.status(404).json({ msg: 'Post not found' });
     }
+
+    debugger
+
 
     res.json(post);
 

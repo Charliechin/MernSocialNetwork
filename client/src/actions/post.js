@@ -94,6 +94,7 @@ export const addComment = (postId, formData) => async dispatch => {
     dispatch(setAlert('Comment Created', 'success'));
 
   } catch (error) {
+
     dispatch({
       type: POST_ERROR,
       payload: { msg: error.response.statusText, status: error.response.status }

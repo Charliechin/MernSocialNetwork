@@ -8,6 +8,14 @@ React asynchronously calls our api to manage a social network in which users can
 
 The application uses JWTtokens to authenticate users and routes.
 
+## Database / Backend
+Express
+Node
+DB Handled by MongoDB Atlas (https://www.mongodb.com/cloud/atlas)
+
+## Front-end / Client
+React
+
 ## How to run
 
 Run the command `npm run dev`

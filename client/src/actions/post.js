@@ -24,7 +24,7 @@ export const getPosts = () => async dispatch => {
 
 
 
-// Remove post
+//  Remove post
 export const removePost = postId => async dispatch => {
   try {
     await axios.delete(`api/posts/${postId}`);

@@ -11,7 +11,7 @@ const CommentItem = ({
   postId,
   auth,
   deleteComment,
-  comment: { commentId, text, name, avatar, user, date }
+  comment: { _id, text, name, avatar, user, date }
 }) => {
 
 
@@ -30,7 +30,7 @@ const CommentItem = ({
         </p>
         {!auth.loading && user === auth.user._id && (
           <button
-            onClick={e => deleteComment(postId, commentId)}
+            onClick={e => deleteComment(postId, _id)}
             type="button"
             className="btn btn-danger"
           >

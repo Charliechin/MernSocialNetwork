@@ -1,0 +1,5 @@
+{
+  "mongoURI": "mongodb+srv://charliechiner:kinkinkin22@cluster0.imicl.gcp.mongodb.net/mernSocialMedia?retryWrites=true&w=majority",
+  "jwtToken": "mysecrettoken",
+  "githubToken": "96a4bec3d80e3a975895f66e23184e6133a1d61f"
+}
